@@ -1,14 +1,23 @@
-﻿Console.WriteLine("Enter a number");
+﻿Console.WriteLine("Enter a number:");
 string input = Console.ReadLine();
 try
 {
-	var number = ParseStringToInt(input);
-	Console.WriteLine("String successfully parsed, the result is " + number);
+	int number = ParseStringToInt(input);
+	var result = 10 / number;
+	Console.WriteLine($"10 / {number} is " + result);
 
+}
+catch (FormatException ex)
+{
+	Console.WriteLine("Wrong format. Input string is not parsable to int. " + "Exception message: " + ex.Message);
+}
+catch (DivideByZeroException ex)
+{
+	Console.WriteLine("Division by zero is an invalid operation. " + "Exception message: " + ex.Message);
 }
 catch (Exception ex)
 {
-	Console.WriteLine("An exception was thrown." + ex.Message);
+	Console.WriteLine("Unexpected error occurred. " + "Exception message: " + ex.Message);
 }
 finally
 {
